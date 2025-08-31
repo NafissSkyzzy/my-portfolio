@@ -1,0 +1,1097 @@
+:root {
+    --primaryTextColor: #ffd000; /* Untuk title atau judul */
+    --secondaryTextColor: #3d474e; /* Untuk text biasa seperti paragraph contohnya */
+  
+    --borderColor: #3d474e;
+    --lineColor: #2c2f38; /* untuk line di pre-title */
+  
+    --primaryBackgroundColor: #192230;
+    --secondaryBackgroundColor: #2c2f38;
+    --thirdBackgroundColor: #3d474e;
+  
+    --primaryIconColor: #ffd000;
+    --primaryIconColorHover: #ffffff;
+
+    --accentColor: #00eeff;
+
+  
+    --sectionPadding: 6rem 0;
+  
+    --itemBorderRadius: 0.7rem;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: "Roboto", sans-serif;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong {
+    color: var(--primaryTextColor);
+  }
+  
+  p {
+    font-size: 1rem; /* 16 px */
+    line-height: 1.9rem; /*30.4 px */
+  }
+  
+  p,
+  span,
+  label,
+  input,
+  textarea,
+  li {
+    color: var(--secondaryTextColor);
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  /* End Preparation */
+  
+  .main-container {
+    width: 1200px;
+    margin: 0 auto;
+  }
+  
+  @media screen and (max-width: 1200px) {
+    .main-container {
+      width: 90%;
+    }
+  }
+  
+/* Default (Light Mode) */
+body {
+  --btn-bg: #192230;               /* sama seperti navbar */
+  --btn-text: var(--primaryIconColor);                /* teks putih */
+  --btn-border: var(--primaryIconColor); /* border kuning */
+  --btn-hover-bg: var(--primaryIconColor); /* hover kuning */
+  --btn-hover-text: #192230;       /* teks gelap biar kontras */
+}
+
+/* Dark Mode (saat body tidak ada class .light-mode) */
+body:not(.light-mode) {
+  --btn-bg: var(--primaryIconColor);           /* kuning */
+  --btn-text: var(--primaryBackgroundColor);   /* teks hitam */
+  --btn-border: var(--primaryBackgroundColor); /* border hitam */
+  --btn-hover-bg: var(--primaryBackgroundColor); /* hover hitam */
+  --btn-hover-text: var(--primaryIconColor);                      /* teks putih */
+}
+
+/* Style dasar tombol */
+.btn {
+  padding: 0.5rem 1rem;
+  background: var(--btn-bg);
+  border: 1.5px solid var(--btn-border);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  color: var(--btn-text);
+}
+
+/* Hover efek */
+.btn:hover {
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-text);
+  border-color: var(--btn-hover-bg);
+}
+
+  
+  /* Titles */
+.section-title {
+  margin: 1rem 0 4rem;
+  font-size: 2rem;
+}
+
+.pre-title {
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  color: var(--textColorSecondary); /* ✅ pakai variable yang ikut toggle */
+  position: relative;
+  padding-left: 40px;
+  width: fit-content;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.pre-title::before {
+  content: "";
+  width: 30px;
+  height: 1px;
+  background: var(--textColorSecondary); /* garis juga ikut variable */
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 50%;
+}
+
+
+  
+  /* Layouts */
+.grid-3 {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr; use this first, use code below when its time for explaining responsive design part */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+  }
+  
+/* --- Logo and Navigation Menu --- */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Default (Dark Mode) --- */
+body:not(.light-mode) .nav {
+  background-color: var(--primaryIconColor); /* kuning */
+}
+
+body:not(.light-mode) .nav ul li a {
+  color: var(--primaryBackgroundColor); /* teks hitam di atas kuning */
+}
+
+body:not(.light-mode) .nav ul li a::after {
+  background-color: var(--primaryBackgroundColor); /* underline hitam */
+}
+
+/* --- Light Mode --- */
+body.light-mode .nav {
+  background-color: #192230; /* sama seperti background dark mode */
+}
+
+body.light-mode .nav ul li a {
+  color:var(--primaryIconColor); /* teks putih biar kontras */
+}
+
+body.light-mode .nav ul li a::after {
+  background-color:var(--primaryIconColor); /* underline kuning */
+}
+
+/* Menu List */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 3rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hover efek tetap konsisten */
+.nav ul li a:hover {
+  color: var(--primaryIconColor);
+}
+
+
+  
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+  
+  .logo a {
+    color: var(--primaryBackgroundColor);
+  }
+  
+  /* Navigation Menu */
+  nav ul li {
+    display: flex;
+    align-items: center;
+  }
+  
+  nav ul li a {
+    color: var(--secondaryBackgroundColor);
+    position: relative;
+    display: inline-block;  /* biar bisa jadi container buat ::after */
+  padding-bottom: 4px;    /* kasih ruang buat garis */
+    transition: transform 0.2s ease, color 0.2s ease; /* tambahin smooth */
+  }
+
+  .nav ul li a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0; /* taruh pas di bawah teks */
+  left: 0;
+  background-color: var(--lineColor);
+    transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+nav ul li a:hover {
+  transform: scale(1.1); /* efek pop jalan pas hover */
+}
+
+.nav ul li a:hover::after {
+  width: 100%;
+  transform: scaleX(1); /* garis melebar dari kiri */
+  transform-origin: right; /* pas keluar, mengerut ke kanan */
+}
+
+/* Mobile Dark Mode */
+@media (max-width: 768px) {
+  body:not(.light-mode) .nav ul li a {
+    color: var(--primaryBackgroundColor); /* hitam, biar kontras dengan navbar kuning */
+  }
+
+  body:not(.light-mode) .nav ul li a:hover {
+    color: #fff; /* hover putih */
+  }
+
+  body:not(.light-mode) .nav ul li a::after {
+    background-color: #fff; /* underline putih */
+  }
+}
+
+/* Mobile Dark Mode */
+@media (max-width: 768px) {
+  body:not(.light-mode) .nav ul li a {
+    color: #fff; /* putih biar jelas di atas background kuning */
+  }
+
+  body:not(.light-mode) .nav ul li a:hover {
+    color: #fff;
+    transform: scale(1.1);
+  }
+
+  body:not(.light-mode) .nav ul li a::after {
+    background-color: #fff;
+  }
+}
+
+/* Mobile Light Mode */
+@media (max-width: 768px) {
+  body.light-mode .nav ul li a {
+    color: #000; /* kuning biar kontras dengan navbar biru */
+  }
+
+  body.light-mode .nav ul li a:hover {
+    color: var(--primaryIconColor);
+    transform: scale(1.1);
+  }
+
+  body.light-mode .nav ul li a::after {
+    background-color: var(--primaryIconColor);
+  }
+}
+  
+  /* Burger - Save for later on video */
+  .burger div {
+    width: 25px;
+    height: 2px;
+    background-color: var(--primaryBackgroundColor);
+    margin: 7px;
+    transition: all 0.3s;
+    z-index: 99;
+  }
+
+    .burger.active div {
+  background-color: var(--primaryIconColor); /* hitam */
+}
+  
+  .burger {
+    background-color: var(--primaryBackgroundColor);
+    display: none;
+      position: fixed;
+      z-index: 99;
+  cursor: pointer;
+  top: 33px;
+  right: 35px;
+
+  position: absolute;   /* ganti dari fixed ke absolute */
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%); /* biar pas tengah */
+  z-index: 1001;
+  background: transparent; /* hapus kotak putih */
+  }
+  
+  /* Hero Section */
+  #hero {
+    min-height: calc(100vh - 80px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* We're not going to use automatic template columns, because we need to know when the columns is go below. So we can exchange the order of the element */
+    align-items: center;
+    padding-top: 0;
+    
+  }
+
+  /* Responsive - Mobile */
+@media (max-width: 768px) {
+  #hero {
+    min-height: auto;         /* jangan pakai vh di mobile */
+    grid-template-columns: 1fr; /* jadi 1 kolom */
+     padding-top: 7rem;    /* tetap lega biar gak nempel navbar */
+    padding-bottom: 1rem; /* kecilin biar gak ada jarak kosong ke bawah */
+    text-align: center;        /* biar rapi */
+  }
+
+  .hero-right {
+    margin-bottom: 2rem; /* kasih jarak antara gambar dan teks */
+   display: flex;
+  justify-content: center;
+  position: relative; /* penting untuk pseudo-element */
+  }
+}
+  
+.hero-name {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0.5rem 0 1rem;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 1.5s steps(20, end) infinite alternate;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@media (max-width: 768px) {
+  .hero-name {
+    width: auto;              /* biar langsung penuh */
+    animation: none !important; /* matikan animasi */
+    white-space: normal;      /* teks bisa wrap */
+  }
+}
+
+
+  
+  .hero-name span {
+    color: var(--primaryIconColor) !important;
+  }
+  
+.hero-right img {
+  max-width: 50%;
+  height: auto;
+  border-radius: 50%;
+  border: 5px solid var(--primaryIconColor); /* border utama */
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 35px rgba(255, 208, 0, 0.9); /* glow default */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  /* Animasi kedip */
+  animation: glowPulse 2s infinite alternate;
+}
+
+.hero-right img:hover {
+  transform: scale(1.08); /* sedikit membesar */
+  box-shadow: 0 0 60px rgba(255, 208, 0, 1); /* glow makin terang pas hover */
+}
+
+/* Animasi glow berdenyut */
+@keyframes glowPulse {
+  from {
+    box-shadow: 0 0 15px rgba(255, 208, 0, 0.5),
+                0 0 30px rgba(255, 208, 0, 0.6);
+  }
+  to {
+    box-shadow: 0 0 35px rgba(255, 208, 0, 0.9),
+                0 0 60px rgba(255, 208, 0, 1);
+  }
+}
+
+  
+  .hero-right {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-next {
+  display: inline-block;
+  margin-top: 3rem;
+  padding: 0.7rem 1.5rem;
+  background: var(--primaryIconColor);
+  color:var(--primaryBackgroundColor);
+  border-radius: 30px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-next:hover {
+  background:var(--primaryBackgroundColor);
+  color: var(--primaryIconColor);
+  border: 1.5px solid var(--primaryIconColor);
+}
+
+
+ /* Services Section */
+#services {
+    background-color: var(--secondaryBackgroundColor);
+    padding: var(--sectionPadding);
+  }
+  
+  .services .pre-title {
+    margin: 0 auto;
+  }
+  
+  .services-title {
+    text-align: center;
+  }
+
+/* Dark mode (default) */
+.service {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1); /* dark mode blur */
+    border-radius: var(--itemBorderRadius);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Light mode */
+body.light-mode .service {
+    background: rgba(200, 200, 200, 0.1); /* abu blur, opacity rendah */
+    border: 1px solid rgba(200, 200, 200, 0.3); /* border soft */
+}
+
+
+
+
+  .service h4 {
+    margin: 1.5rem 0;
+    font-weight: 500;
+    font-size: 1.05rem;
+  }
+
+  .service-icon {
+    background: var(--thirdBackgroundColor);
+    width: fit-content;
+    margin: 0 auto;
+    padding: 1rem 1.3rem;
+    border-radius: 0.5rem;
+  }
+
+.service:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+  
+  .service-icon svg {
+    fill: var(--primaryIconColor);
+  }
+
+  /* Portfolio Section */
+  #portfolios {
+    padding: var(--sectionPadding);
+  }
+
+ .portfolio {
+  position: relative;
+  display: block;
+  border-radius: var(--itemBorderRadius);
+  overflow: hidden;
+  border: 1px solid var(--borderColor);
+
+  /* state awal */
+  transform: translateY(0) scale(1);
+  transform-origin: center center;
+
+  /* transisi popup */
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s ease;
+  will-change: transform;
+}
+
+  .portfolio-cover {
+    height: 250px;
+  }
+
+  .portfolio-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .portfolio-info {
+    padding: 2rem 1.5rem;
+  }
+
+  .portfolio-title {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    gap: 1rem;
+  }
+
+  .portfolio h4 {
+    font-weight: 500;
+    font-size: 1.05rem;
+    font-weight: bold;
+  }
+
+/* Default SVG */
+.portfolio-title a svg {
+  transition: 0.2s ease-in-out;
+}
+
+/* Hover - Berlaku di semua mode */
+.portfolio-title a svg:hover {
+  fill: var(--primaryIconColor)!important;
+}
+
+/* Dark Mode - default putih */
+body:not(.light-mode) .portfolio-title a svg {
+  fill: #fff;
+}
+
+/* Light Mode - default bisa hitam / bebas */
+body.light-mode .portfolio-title a svg {
+  fill: #192230; /* contoh: warna navbar / teks gelap */
+}
+
+
+  .portfolio-tags {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+.portfolio-tags div {
+  font-size: .9rem;
+  border: 1px solid var(--borderColor);   /* ikut variable border */
+  padding: .4rem 1rem;
+  color: var(--textColorSecondary);       /* ikut variable teks */
+  background-color: transparent;          /* biar adaptif ke mode */
+  transition: color 0.3s ease, border 0.3s ease;
+}
+
+.portfolio:hover {
+  transform: translateY(-10px) scale(1.06);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+}
+
+
+/* Certificates Section */
+.certificates {
+  text-align: center;
+  padding: 100px 0;
+}
+
+/* Pre-title khusus Certificates */
+.certificates .pre-title {
+  display: inline-block;
+  width: auto; /* biar hanya selebar teks */
+  font-size: 0.70rem; /* atau pakai ukuran yang kamu inginkan, misal 14px */
+}
+
+/* Versi mobile */
+@media (max-width: 768px) {
+  .certificates .pre-title {
+    font-size: 0.70rem; /* lebih kecil di mobile */
+    letter-spacing: 1px; /* jarak huruf rapet */
+  }
+}
+
+.certificate-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-track-container {
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px; /* atur sesuai kebutuhan */
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.certificate-item {
+  flex: 0 0 calc(100% / 3);
+  box-sizing: border-box;
+  padding: 15px;
+  position: relative;
+}
+
+.certificate-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 4px 5px rgba(0,0,0,0.1);
+  background: #fff;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  display: block;
+}
+
+/* Hover efek */
+.certificate-item:hover img {
+  transform: scale(1.07);
+  filter: brightness(30%); /* atur 100% normal, makin kecil makin gelap */
+}
+
+/* Title di tengah */
+.certificate-item h4 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  z-index: 2; /* di atas overlay */
+}
+
+.certificate-item:hover h4 {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Mobile: matikan semua efek hover */
+@media (max-width: 768px) {
+  .certificate-item:hover img {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .certificate-item:hover h4 {
+    opacity: 0 !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+
+/* Buttons */
+.carousel-btn {
+  background: var(--primaryIconColor, #4a90e2);
+  color: #fff;
+  border: none;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover efek */
+.carousel-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+  background: var(--primaryIconColor, #4a90e2);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Saat ditekan */
+.carousel-btn:active {
+  transform: translateY(-50%) scale(0.95);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Posisi kiri & kanan */
+.carousel-btn.prev {
+  left: -10px;
+}
+
+.carousel-btn.next {
+  right: -10px;
+}
+
+/* Responsive tombol carousel */
+@media (max-width: 768px) {
+  .carousel-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .carousel-btn.prev {
+    left: -5px;
+  }
+
+  .carousel-btn.next {
+    right: -5px;
+  }
+}
+
+
+  /* Skills and Education */
+#skills {
+  padding: var(--sectionPadding);
+  background: var(--secondaryBackgroundColor);
+}
+
+.skills-grid {
+  display: grid;
+  /* grid-template-columns: 40% 60%; */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.education {
+  display: flex;
+  gap: 1rem;
+}
+
+.education .line {
+  padding: 0 0.7rem;
+}
+
+.education .line div {
+  width: 2px;
+  height: 100%;
+  background: var(--borderColor);
+  position: relative;
+}
+
+.education-info p {
+  margin: 0.6rem 0 0.7rem;
+}
+
+.education-years {
+  margin-bottom: 2rem;
+}
+
+/* The dot on the line */
+.education .line div:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background: var(--borderColor);
+  border-radius: 50%;
+  position: absolute;
+  left: -6px;
+}
+
+.skills-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 1.5 rem;
+}
+
+.skills-right ul {
+  line-height: 2rem;
+  padding: 1rem;
+}
+
+/* Contact Section */
+#contact {
+  padding: var(--sectionPadding);
+}
+
+.contact {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr; */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.contact-form div {
+  margin-bottom: 1.4rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem 1.3rem;
+  font-family: "Roboto", sans-serif;
+  background: var(--secondaryBackgroundColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 3px;
+  resize: none;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #9d9fa1;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border: 1px solid #7d7d7d;
+}
+
+/* Default (DARK MODE) */
+.btn-submit {
+  width: 100%;
+  padding: 0.75rem 1.3rem;
+  background-color: var(--primaryIconColor); /* kuning */
+  color: #000; /* teks hitam biar kontras */
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.btn-submit:hover {
+  background-color: var(--primaryIconColorHover); /* putih */
+  color: var(--primaryIconColor); /* teks kuning pas hover */
+}
+
+/* Light Mode */
+body.light-mode .btn-submit {
+  background-color: #000; /* jadi hitam */
+  color: #fff; /* teks putih */
+}
+
+body.light-mode .btn-submit:hover {
+  background-color: var(--primaryIconColor); /* kuning pas hover */
+  color: #000; /* teks hitam */
+}
+
+
+.contact-item {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+
+.contact-item-icon {
+background: var(--thirdBackgroundColor);
+width: 53px;
+height: 53px;
+border-radius: 9px;
+display: flex;
+justify-content: center;
+align-items: center;
+object-fit: contain;
+flex-shrink: 0;
+}
+
+.contact-item-icon svg {
+  fill: var(--primaryIconColor);
+}
+
+.contact-item-detail h4 {
+  margin-bottom: 0.6rem;
+}
+
+/* Footer Section */
+footer {
+  padding: 4rem 0;
+  background: var(--secondaryBackgroundColor);
+  text-align: center;
+}
+
+.footer-icons {
+  margin-bottom: 1rem;
+}
+
+.footer-icons a {
+  margin: 0 0.5rem;
+}
+
+/* Default (DARK MODE) */
+.footer-icons svg {
+  fill: #fff; /* putih */
+  transition: fill 0.3s ease;
+}
+
+.footer-icons a:hover svg {
+  fill: var(--primaryIconColor); /* hover kuning */
+}
+
+/* Light mode */
+body.light-mode .footer-icons svg {
+  fill: #3e3f40; /* abu seperti default */
+}
+
+body.light-mode .footer-icons a:hover svg {
+  fill: var(--primaryIconColor); /* hover tetap kuning */
+}
+
+
+/* Tombol Theme Switch */
+#theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--primaryIconColor); /* kuning di dark mode */
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Light mode → bulatan jadi hitam, icon kuning */
+.light-mode #theme-toggle {
+  background-color: #000; 
+  color: var(--primaryBackgroundColor);
+}
+
+.light-mode #theme-toggle img {
+  filter: invert(70%) sepia(100%) saturate(500%) hue-rotate(0deg) brightness(100%); /* kuning */
+}
+
+
+
+/* Base (Dark Mode → panah kuning) */
+#scroll-up {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background-color: var(--primaryIconColor);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: bold;
+  color:#000; /* kuning untuk dark mode */
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(1);
+  transition: background-color .3s ease, transform .3s ease, opacity .3s ease, color .3s ease;
+}
+
+/* Saat muncul */
+#scroll-up.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* Hover (pas udah muncul) */
+#scroll-up.show:hover {
+  transform: translateY(0) scale(1.1);
+}
+
+/* Light mode → bulatan hitam + panah hitam */
+.light-mode #scroll-up {
+  background-color: #000;
+  color:var(--primaryIconColor); /* panah hitam */
+}
+
+
+
+/* Light Mode Override */
+body.light-mode {
+  --primaryTextColor: #222;            /* teks judul jadi hitam */
+  --secondaryTextColor: #444;          /* teks biasa abu tua */
+  
+  --borderColor: #ccc;                 /* border terang */
+  --lineColor: #aaa;                   /* garis pre-title abu */
+  
+  --primaryBackgroundColor: #ffffff;   /* background utama putih */
+  --secondaryBackgroundColor: #f5f5f5; /* section abu muda */
+  --thirdBackgroundColor: #eaeaea;     /* card lebih terang */
+
+  --primaryIconColor: #ffd000;         /* ikon tetap kuning */
+  --primaryIconColorHover: #333;       /* hover jadi hitam */
+  
+  --accentColor: #0077ff;              /* aksen biru biar fresh */
+}
+
+/* Override semua section jadi pakai background utama */
+body,
+#hero,
+#services,
+#portfolios,
+#skills,
+#contact,
+footer {
+  background-color: var(--primaryBackgroundColor) !important;
+}
+
+/* Tambahan di bawah CSS-mu */
+
+/* Dark mode (default) */
+body {
+  --textColorMain: #ffffff;
+  --textColorSecondary: #dddddd;
+}
+
+/* Light mode */
+body.light-mode {
+  --textColorMain: #222222;
+  --textColorSecondary: #444444;
+}
+
+/* Pakai di semua text */
+h1, h2, h3, h4, h5, h6, strong {
+  color: var(--textColorMain);
+}
+
+p, span, label, input, textarea, li {
+  color: var(--textColorSecondary);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body, 
+.nav, 
+footer, 
+section, 
+button, 
+input, 
+textarea, 
+svg, 
+p, 
+h1, h2, h3, h4, h5, h6 {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease, 
+              fill 0.3s ease;
+}
